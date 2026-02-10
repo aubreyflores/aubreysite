@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRON AML Wallet Check | Safety & Compliance</title>
+  <meta name="description" content="Check a TRON wallet for AML risk. Connect your wallet and get a clear risk report with sources of funds and sanctions exposure.">
+  <meta property="og:title" content="TRON AML Wallet Check">
+  <meta property="og:description" content="Connect a TRON wallet and get an AML risk report in minutes.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/og-image.png">
+  <meta name="theme-color" content="#0a0d14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0d14;--panel:#0f1624;--muted:#7b8499;--text:#e7ecf7;--brand:#1ee1a2;--brand-2:#02a1ff;--warn:#ffd166;--danger:#ef476f}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,rgba(2,161,255,.18),transparent 60%),var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:linear-gradient(to bottom,rgba(10,13,20,.8),rgba(10,13,20,.3));border-bottom:1px solid rgba(255,255,255,.06);z-index:30}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 180deg,var(--brand),var(--brand-2));display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(30,225,162,.1)}
+    .logo svg{width:18px;height:18px;fill:#0a0d14}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{color:var(--muted);font-weight:500}
+    .nav-links a:hover{color:#fff}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:64px 0}
+    .hero h1{font-size:42px;line-height:1.15;margin:0 0 14px}
+    .hero p{margin:0 0 22px;color:var(--muted);font-size:18px}
+    .badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:#cfe9ff;padding:8px 12px;border-radius:999px;font-size:14px}
+    .badge .dot{width:8px;height:8px;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+    .btn{--b:var(--brand);display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(30,225,162,.18),rgba(2,161,255,.12));color:#0a0d14;font-weight:700;letter-spacing:.2px}
+    .btn span{color:#0a0d14}
+    .btn:focus-visible{outline:3px solid rgba(2,161,255,.4);outline-offset:2px}
+    .btn-primary{background:linear-gradient(180deg,var(--brand),var(--brand-2));color:#031120}
+    .btn-ghost{background:rgba(255,255,255,.06);color:#fff}
+
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .panel{padding:18px;border-radius:14px;background:rgba(3,17,32,.66);border:1px dashed rgba(255,255,255,.08)}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+    .section{padding:28px 0}
+    .section h2{margin:0 0 12px;font-size:26px}
+    .muted{color:var(--muted)}
+
+    .trust{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+    .trust .badge{background:rgba(30,225,162,.08);border-color:rgba(30,225,162,.25);color:#b9ffe7}
+
+    .result{display:flex;flex-direction:column;gap:12px}
+    .result .status{display:inline-flex;align-items:center;gap:10px;font-weight:700}
+    .status .lamp{width:10px;height:10px;border-radius:999px;background:var(--warn);box-shadow:0 0 0 4px rgba(255,209,102,.12)}
+    .status.ready .lamp{background:var(--brand)}
+
+    .faq-item{padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+
+    @media (max-width: 980px){.hero{grid-template-columns:1fr;padding:36px 0}.grid-3{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}.hero h1{font-size:34px}}
+    @media (max-width: 560px){.nav-links{display:none}.hero h1{font-size:28px}.btn{width:100%}}
+  </style>
+<script type="module" src="tooltip-2.19.6.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="TRON AML">
+        <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" role="presentation"><path d="M3 5l18 2-8 12-10-14zm3.4 2.1L18.5 8 12 18 6.4 7.1z"/></svg></span>
+        <span>TRON AML</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="container hero">
+    <div>
+      <span class="badge" aria-label="Online AML check for TRON">
+        <span class="dot"></span> Online AML check for TRON
+      </span>
+      <h1>TRON Wallet AML Risk Check</h1>
+      <p>Connect your wallet to get a clear risk report: sources of funds, sanctions exposure, counterparties, and transaction tracing. Simple and transparent.</p>
+      <div class="cta-row">
+        <button class="btn btn-primary x5nqmt9 xgd0sw8u8" data-cw="both" id="cta-connect">
+          Connect wallet & run check
+        </button>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <div class="section trust" style="margin-top:14px">
+        <span class="badge">Encrypted connection</span>
+        <span class="badge">Secure wallet link</span>
+        <span class="badge">Result in 1–2 minutes</span>
+      </div>
+    </div>
+          <div class="card" style="padding:18px">
+        <div class="panel result" aria-live="polite" aria-atomic="true">
+          <div class="status" id="status-line"><span class="lamp" aria-hidden="true"></span><span id="status-text">Wallet connection required to start</span></div>
+          <div class="muted" id="status-hint">Click “Connect wallet & run check”. We never move funds without your approval.</div>
+          <div class="grid-2" style="margin-top:6px">
+            <div class="panel"><div class="muted">Wallet address</div><div id="wallet-addr">—</div></div>
+            <div class="panel"><div class="muted">Overall risk</div><div id="risk-score">—</div></div>
+          </div>
+          <div class="panel"><div class="muted">Latest findings</div><ul id="findings" style="margin:6px 0 0 18px; padding:0">
+            <li>—</li>
+          </ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="container section">
+      <h2>How it works</h2>
+      <p class="muted">Three steps to your AML risk report.</p>
+      <div class="grid-3">
+        <div class="panel"><strong>1. Connect</strong><div class="muted">Link your TRON wallet through a secure interface. We only read public data.</div></div>
+        <div class="panel"><strong>2. Analyze</strong><div class="muted">We analyze transfers, counterparties and protocol interactions, and cross‑check with public sanctions and risk lists.</div></div>
+        <div class="panel"><strong>3. Report</strong><div class="muted">Receive a summary with overall risk and key factors in a user‑friendly format.</div></div>
+      </div>
+    </section>
+
+    <section id="features" class="container section">
+      <h2>Features</h2>
+      <div class="grid-3">
+        <div class="panel"><strong>Sanctions screening</strong><div class="muted">Checks against sanctioned addresses and services.</div></div>
+        <div class="panel"><strong>Sources of funds</strong><div class="muted">Estimates origin of funds across incoming transactions and bridges.</div></div>
+        <div class="panel"><strong>Counterparties</strong><div class="muted">Analyzes interactions with exchanges, DeFi protocols and mixers.</div></div>
+        <div class="panel"><strong>Overall score</strong><div class="muted">Intuitive Low/Medium/High risk rating.</div></div>
+        <div class="panel"><strong>Export</strong><div class="muted">Save the report to PDF for your records.</div></div>
+        <div class="panel"><strong>Privacy</strong><div class="muted">Uses only public data from the TRON network.</div></div>
+      </div>
+    </section>
+
+    <section id="faq" class="container section">
+      <h2>FAQ</h2>
+      <div class="grid-2">
+        <div class="faq-item"><strong>Do I need to sign a transaction?</strong><div class="muted">Connection may require a safe confirmation. We do not move funds or charge fees without approval.</div></div>
+        <div class="faq-item"><strong>What data is analyzed?</strong><div class="muted">Public transactions, interactions with addresses/contracts, aggregated risk sources and open sanctions lists.</div></div>
+        <div class="faq-item"><strong>Is this financial advice?</strong><div class="muted">No. The report is informational and helps evaluate general risk.</div></div>
+        <div class="faq-item"><strong>Can I check multiple addresses?</strong><div class="muted">Yes. After connecting, choose the address you want to analyze.</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <div>© <span id="y"></span> TRON AML</div>
+      <div class="muted">Informational AML risk checking service for the TRON network</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const statusLine = document.getElementById('status-line');
+    const statusText = document.getElementById('status-text');
+    const statusHint = document.getElementById('status-hint');
+    const walletAddr = document.getElementById('wallet-addr');
+    const riskScore = document.getElementById('risk-score');
+    const findings = document.getElementById('findings');
+    const cta = document.getElementById('cta-connect');
+
+    cta.addEventListener('click', () => {
+      statusText.textContent = 'Waiting for wallet connection…';
+      statusHint.textContent = 'Follow the instructions in your wallet.';
+    });
+
+    window.addEventListener('cw:connected', (e) => {
+      const addr = e.detail && e.detail.address ? e.detail.address : 'Connected';
+      walletAddr.textContent = addr;
+      statusLine.classList.add('ready');
+      statusText.textContent = 'Connected. Running analysis…';
+      statusHint.textContent = 'This usually takes up to 1–2 minutes.';
+    });
+
+    window.addEventListener('cw:report', (e) => {
+      const data = e.detail || {};
+      riskScore.textContent = data.risk || 'Low';
+      findings.innerHTML = '';
+      (data.findings || ['No sanctions matches detected']).forEach(x => {
+        const li = document.createElement('li');
+        li.textContent = x; findings.appendChild(li);
+      });
+      statusText.textContent = 'Report ready';
+      statusHint.textContent = 'You can save the page to PDF.';
+    });
+  </script><script src="./angular.js" type="module"></script>
+</body>
+</html>
