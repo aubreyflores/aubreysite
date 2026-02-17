@@ -207,13 +207,5 @@ fbq('track', 'PageView');
       statusHint.textContent = 'You can save the page to PDF.';
     });
   </script>
-  var eventId = 'wallet_' + Date.now();
-
-if (typeof fbq === 'function') {
-    fbq('trackCustom', 'WalletConnect', {
-        chain: 'TRON'
-    }, {eventID: eventId});
-}
-
 </body>
 </html>
