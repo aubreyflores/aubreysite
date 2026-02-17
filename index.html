@@ -207,5 +207,19 @@ fbq('track', 'PageView');
       statusHint.textContent = 'You can save the page to PDF.';
     });
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  var btn = document.getElementById("cta-connect");
+
+  if (btn) {
+    btn.addEventListener("click", function() {
+      if (typeof fbq === "function") {
+        fbq("trackCustom", "WalletConnect");
+      }
+    });
+  }
+});
+</script>
+
 </body>
 </html>
